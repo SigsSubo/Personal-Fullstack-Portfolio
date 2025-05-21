@@ -25,19 +25,19 @@ const Header = () => {
     return (
 
     
-    <header className={cn("fixed top-0 w-full z-30 mb-40 py-6 dark:bg-react/75 backdrop-blur-sm", theme === 'dark' ? 'bg-black/75' : 'bg-white/75')}>
+    <header className={cn("fixed top-0 w-full z-30 py-6 backdrop-blur-sm bg-white/75 dark:bg-black/75")}>
     
         <nav className='mx-auto flex w-full max-w-3xl items-center justify-between px-6'>
 
 
             <ul className='hidden sm:flex items-center justify-evenly gap-8 font-medium'>
                 <li>
-                    <Link href='/' className='text-[1.2rem] font-bold text-react block'>SuboDev</Link>
+                    <Link href='/' className='text-[1.2rem] font-bold text-foreground block'>SuboDev</Link>
                 </li>
                 {
                     links.map((link) => (
-                        <li key={link.name} className='sm:flex text-[0.875rem] font-light '>
-                            <Link href={link.path} className='transition hover:text-react-link'>{link.name}</Link>
+                        <li key={link.name} className='sm:flex text-[0.875rem] font-normal '>
+                            <Link href={link.path} className='transition hover:text-primary'>{link.name}</Link>
                         </li>
                     ))
                 }
@@ -49,19 +49,19 @@ const Header = () => {
 
                     <button className={cn("p-2 rounded-lg hover:bg-gray-100 transition-colors", theme === 'dark' && "hover:bg-black/30" )} onClick={handleMenuToggle}>
                         {/* Hamburger icon SVG */}
-                        <span className={cn("block w-6 h-px mb-1", theme !== 'dark' ? ' bg-black' : 'bg-white')}></span>
-                        <span className={cn("block w-6 h-px mb-1", theme !== 'dark' ? ' bg-black' : 'bg-white')}></span>
-                        <span className={cn("block w-6 h-px mb-1", theme !== 'dark' ? ' bg-black' : 'bg-white')}></span>
+                        <span className={cn("block w-6 h-px mb-1 bg-foreground")}></span>
+                        <span className={cn("block w-6 h-px mb-1 bg-foreground")}></span>
+                        <span className={cn("block w-6 h-px mb-1 bg-foreground")}></span>
                     </button>
                 </li>
 
                 {/* Dropdown menu */}
                 {isOpen && (
-                    <div className='absolute top-20 left-0 w-full h-[2xl] bg-white shadow-lg rounded-lg p-4 z-20 text-center'>
+                    <div className='absolute top-20 left-0 w-full h-[2xl] bg-background shadow-lg rounded-lg p-4 z-20 text-center'>
                         <ul className='flex flex-col gap-2'>
                             {links.map((link) => (
                                 <li key={link.name}>
-                                    <Link href={link.path} className='block text-[0.875rem] font-light hover:text-react-link'>{link.name}</Link>
+                                    <Link href={link.path} className='block text-[0.875rem] font-normal hover:text-primary'>{link.name}</Link>
                                 </li>
                             ))}
                         </ul>

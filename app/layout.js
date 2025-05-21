@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from "./components/utils/themeProvider";
+import Header from "./components/Header";
 
 
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
             enableSystem
             disableTransitionOnChange
           >
+            <Header />
             {children}
           </ThemeProvider>
       </body>
