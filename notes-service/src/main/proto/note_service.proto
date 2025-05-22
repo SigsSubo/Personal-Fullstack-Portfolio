@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package com.example.notesservice.grpc;
+
+option java_multiple_files = true;
+option java_package = "com.example.notesservice.grpc.generated"; // Generated code will be here
+option java_outer_classname = "NoteServiceProto";
+
+import "google/protobuf/timestamp.proto"; // For timestamps
+
+message NoteMessage {
+    int64 id = 1;
+    string title = 2;
+    string content = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;
+    repeated CommentMessage comments = 6; // Optionally include comments
+}
+
+message CommentMessage {
+    int64 id = 1;
+    string text = 2;
+    int64 note_id = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;
+}
+
+message GetNoteRequest {
+    int64 note_id = 1;
+}
+
+message GetNoteResponse {
+    NoteMessage note = 1;
+}
+
+message GetCommentsForNoteRequest {
+    int64 note_id = 1;
+}
+
+message GetCommentsForNoteResponse {
+    repeated CommentMessage comments = 1;
+}
+
+service NoteGrpcService {
+    rpc GetNoteById(GetNoteRequest) returns (GetNoteResponse);
+    rpc GetCommentsForNote(GetCommentsForNoteRequest) returns (GetCommentsForNoteResponse);
+}
