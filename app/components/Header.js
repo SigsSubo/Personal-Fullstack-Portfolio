@@ -7,6 +7,8 @@ import { useTheme } from 'next-themes';
 import { ModeToggle } from './Menu';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Menu } from 'lucide-react';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -25,19 +27,36 @@ const Header = () => {
     return (
 
     
-    <header className={cn("fixed top-0 w-full z-30 mb-40 py-6 dark:bg-react/75 backdrop-blur-sm", theme === 'dark' ? 'bg-black/75' : 'bg-white/75')}>
+    <motion.header
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeInOut", delay:1.3}}
+      className={cn("fixed top-0 w-full z-30 py-6 backdrop-blur-sm bg-white/75 dark:bg-black/75 transition-colors duration-300 ease-in-out")}
+    >
     
         <nav className='mx-auto flex w-full max-w-3xl items-center justify-between px-6'>
 
 
             <ul className='hidden sm:flex items-center justify-evenly gap-8 font-medium'>
                 <li>
-                    <Link href='/' className='text-[1.2rem] font-bold text-react block'>SuboDev</Link>
+                  <motion.div
+                    className="inline-block"
+                    whileHover={{ y: -2 }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                  >
+                    <Link href='/' className='text-[1.6rem] font-bold text-foreground block'>SD</Link>
+                  </motion.div>
                 </li>
                 {
                     links.map((link) => (
-                        <li key={link.name} className='sm:flex text-[0.875rem] font-light '>
-                            <Link href={link.path} className='transition hover:text-react-link'>{link.name}</Link>
+                        <li key={link.name} className='sm:flex text-[0.875rem] font-normal '>
+                          <motion.div
+                            className="inline-block"
+                            whileHover={{ y: -2 }}
+                            transition={{ duration: 0.2, ease: "easeInOut" }}
+                          >
+                            <Link href={link.path} className='transition hover:text-primary'>{link.name}</Link>
+                          </motion.div>
                         </li>
                     ))
                 }
@@ -47,37 +66,81 @@ const Header = () => {
                 {/* Hamburger menu icon */}
                 <li>
 
-                    <button className={cn("p-2 rounded-lg hover:bg-gray-100 transition-colors", theme === 'dark' && "hover:bg-black/30" )} onClick={handleMenuToggle}>
+                    <button className={cn("p-2 rounded-lg hover:bg-muted/50 transition-colors")} onClick={handleMenuToggle}>
                         {/* Hamburger icon SVG */}
-                        <span className={cn("block w-6 h-px mb-1", theme !== 'dark' ? ' bg-black' : 'bg-white')}></span>
-                        <span className={cn("block w-6 h-px mb-1", theme !== 'dark' ? ' bg-black' : 'bg-white')}></span>
-                        <span className={cn("block w-6 h-px mb-1", theme !== 'dark' ? ' bg-black' : 'bg-white')}></span>
+                        <Menu size={28} className="text-foreground" />
                     </button>
                 </li>
 
                 {/* Dropdown menu */}
-                {isOpen && (
-                    <div className='absolute top-20 left-0 w-full h-[2xl] bg-white shadow-lg rounded-lg p-4 z-20 text-center'>
-                        <ul className='flex flex-col gap-2'>
-                            {links.map((link) => (
-                                <li key={link.name}>
-                                    <Link href={link.path} className='block text-[0.875rem] font-light hover:text-react-link'>{link.name}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      key="mobile-menu"
+                      initial={{ x: "100%", opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: "100%", opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="fixed top-0 left-0 w-full h-screen bg-background flex flex-col items-center justify-center z-50"
+                    >
+                      <motion.button
+                        onClick={() => setIsOpen(false)} // Use the existing setIsOpen function
+                        className="absolute top-5 right-5 p-2 text-foreground hover:text-primary transition-colors" // Basic styling for position and appearance
+                        aria-label="Close menu"
+                        whileHover={{ scale: 1.1, rotate: 90 }}
+                        whileTap={{ scale: 0.9 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <X size={32} /> {/* Lucide X icon */}
+                      </motion.button>
+                      <ul className="flex flex-col items-center gap-8">
+                        {links.map((link, index) => (
+                          <li key={link.name}>
+                            <motion.div
+                              className="block"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 + index * 0.1 }}
+                              whileHover={{ y: -2 }}
+                              // The existing transition for hover might be overridden or merged.
+                              // If hover feels off, this would need adjustment,
+                              // possibly by moving the hover transition into whileHover like:
+                              // whileHover={{ y: -2, transition: { duration: 0.2, ease: "easeInOut" } }}
+                              // For now, proceeding as per simpler interpretation.
+                              onClick={() => setIsOpen(false)} // Close menu on click
+                            >
+                              <Link href={link.path} className='block text-3xl text-foreground hover:text-primary transition-colors py-2'>
+                                {link.name}
+                              </Link>
+                            </motion.div>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
             </ul>
                         
             <div className='flex justify-between items-center gap-5 text-[0.875rem] font-light'>
-                <ModeToggle setTheme={setTheme} className=""/>
-                <Button variant="outline" className='text-[0.8rem]'>Sign In</Button>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex"
+                >
+                  <ModeToggle setTheme={setTheme} className=""/>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button variant="outline" className='text-[0.8rem]'>Sign In</Button>
+                </motion.div>
             </div>
         </nav>
 
 
-    </header>
+    </motion.header>
   );
 };
 
