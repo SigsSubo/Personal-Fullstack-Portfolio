@@ -9,10 +9,15 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Menu } from 'lucide-react';
+// import { Dancing_Script } from 'next/font/google';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, setTheme } = useTheme('light')
+    // const dancingScript = Dancing_Script({
+    //     subsets: ['latin'],
+    //     weight: ['400', '500', '600', '700']
+    // });
 
     const handleMenuToggle = () => {
         setIsOpen(!isOpen);
@@ -44,7 +49,7 @@ const Header = () => {
                     whileHover={{ y: -2 }}
                     transition={{ duration: 0.2, ease: "easeInOut" }}
                   >
-                    <Link href='/' className='text-[1.6rem] font-bold text-foreground block'>SD</Link>
+                    <Link href='/' className={cn('text-[1.6rem] font-bold text-foreground block')}>SD</Link>
                   </motion.div>
                 </li>
                 {
@@ -112,6 +117,7 @@ const Header = () => {
                               <Link href={link.path} className='block text-3xl text-foreground hover:text-primary transition-colors py-2'>
                                 {link.name}
                               </Link>
+
                             </motion.div>
                           </li>
                         ))}
