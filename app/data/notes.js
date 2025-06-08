@@ -4,30 +4,38 @@ const notes = [
     title: "Markdown Enhanced Note", // Updated title
     date: "2024-07-28",
     content: `
-This note demonstrates **various Markdown features**. 
+# Project Notes
+
+This note demonstrates **various Markdown features**.  
 It's important to ensure *proper rendering* of these elements.
 
 ### Key Features to Test:
 - Headings (like the one above)
 - Bold and Italic text (already shown)
+- ~~Strikethrough~~ support
+- [x] Completed Task  
+- [ ] Incomplete Task  
 - Unordered lists
-- Hyperlinks
-- Code blocks
+- [Visit Markdown Guide](https://www.markdownguide.org)
 
-<h1>HTML Heading</h1>
-
-For more information, you can [visit the Markdown Guide](https://www.markdownguide.org).
-
+### Code Example:
 \`\`\`javascript
-// Example code block
 function greet(name) {
-  console.log(\`Hello, \${name} from this Markdown note!\`);
+  console.log(\`Hello, \${name}\`);
 }
 greet('User');
 \`\`\`
 
-Further discussion on project milestones and upcoming deadlines. Key takeaways: focus on user testing and iterate on feedback.
-    `,
+### Table Example:
+
+| Feature         | Supported |
+|----------------|-----------|
+| Bold           | ✅        |
+| Tables         | ✅        |
+| Code Blocks    | ✅        |
+| Task Lists     | ✅        |
+| Links          | ✅        |
+`,
   },
   {
     id: 2,

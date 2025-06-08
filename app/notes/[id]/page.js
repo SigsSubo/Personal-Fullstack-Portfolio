@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import notesData from '../../data/notes'; 
 import ReactMarkdown from 'react-markdown'; // Added import for ReactMarkdown
+import MarkdownRenderer from '@/app/components/utils/MarkdownRenderer';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 
@@ -52,14 +53,15 @@ export default function NoteDetailPage() {
         <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-3 sm:mb-4">{note.title}</h1>
         <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 sm:mb-8">{displayDate}</p>
         
-        <div 
-          className="prose prose-slate dark:prose-invert max-w-none" // Removed whitespace-pre-wrap and base text styling
+        <div className="prose prose-slate mx-auto p-6" // Removed whitespace-pre-wrap and base text styling
         >
           {/* Content is now rendered by ReactMarkdown */}
-        <ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}   rehypePlugins={[rehypeHighlight]}>
           {note.content}
         </ReactMarkdown>
         </div>
+
+        
       </motion.div>
 
       {/* Comments Section Placeholder */}
