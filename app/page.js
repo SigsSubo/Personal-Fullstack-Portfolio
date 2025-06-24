@@ -7,7 +7,6 @@ import Sparkle from "./components/Sparkle";
 import GradientHeading from "./components/ui/GradientHeading";
 import Link from "next/link";
 
-
 // Sparkle configurations
 const heroImageSparkles = [
   { id: 'h-s1', top: '5%', left: '-5%', size: 12, animationType: 'float', duration: 4.5, color: '#FFFACD' },
@@ -31,8 +30,8 @@ export default function Home() {
           <motion.h1
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut", delay: 1.5}}
-            className='text-2xl sm:text-3xl md:text-4xl font-bold text-foreground'
+            transition={{ duration: 0.5, ease: "easeInOut", delay: 1.5 }}
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground"
           >
             Hey, I&apos;m Subarna
           </motion.h1>
@@ -40,7 +39,7 @@ export default function Home() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut", delay: 1.7 }}
-            className='mt-2 text-base sm:text-lg text-muted-foreground'
+            className="mt-2 text-base sm:text-lg text-muted-foreground"
           >
             I love networking and system security.
           </motion.p>
@@ -50,10 +49,9 @@ export default function Home() {
             transition={{ duration: 0.5, ease: "easeInOut", delay: 1.9 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="relative inline-block mt-4" // Added relative, inline-block for positioning context
+            className="relative inline-block mt-4"
           >
-            <Link href='./contacts'><Button className="">Reach Out</Button></Link>
- {/* Margin is on this motion.div */}
+            <Link href="./contacts"><Button className="">Reach Out</Button></Link>
             {ctaSparkles.map(s => (
               <Sparkle
                 key={s.id}
@@ -61,20 +59,19 @@ export default function Home() {
                 color={s.color}
                 animationType={s.animationType}
                 animationDuration={s.duration}
-                style={{ 
-                  position: 'absolute', 
-                  top: s.top, 
-                  left: s.left, 
-                  right: s.right, 
-                  bottom: s.bottom, 
+                style={{
+                  position: 'absolute',
+                  top: s.top,
+                  left: s.left,
+                  right: s.right,
+                  bottom: s.bottom,
                   pointerEvents: 'none',
-                  // zIndex: 1, // Optional: if needed to be above button but not block clicks
                 }}
               />
             ))}
           </motion.div>
         </div>
-        <div className="md:flex items-center justify-end relative"> {/* Added relative for image sparkles */}
+        <div className="md:flex items-center justify-end relative">
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -85,7 +82,7 @@ export default function Home() {
               alt="Hero Image"
               width={500}
               height={500}
-              className="w-64 sm:w-80 md:w-[500px] rounded-lg shadow-lg" // Image itself should not have z-index issues
+              className="w-64 sm:w-80 md:w-[500px] rounded-lg shadow-lg"
             />
           </motion.div>
           {heroImageSparkles.map(s => (
@@ -95,15 +92,15 @@ export default function Home() {
               color={s.color}
               animationType={s.animationType}
               animationDuration={s.duration}
-              style={{ 
-                position: 'absolute', 
-                top: s.top, 
-                left: s.left, 
-                right: s.right, 
-                bottom: s.bottom, 
-                pointerEvents: 'none', 
-                zIndex: -1 // Behind the image
-              }} 
+              style={{
+                position: 'absolute',
+                top: s.top,
+                left: s.left,
+                right: s.right,
+                bottom: s.bottom,
+                pointerEvents: 'none',
+                zIndex: -1
+              }}
             />
           ))}
         </div>
@@ -114,7 +111,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: "easeInOut", delay:0.9}}
+          transition={{ duration: 0.5, ease: "easeInOut", delay: 0.9 }}
           className="text-3xl sm:text-4xl text-foreground mb-6 font-bold from-sky-400 via-blue-500 to-indigo-600"
         >
           SuboDev
@@ -123,7 +120,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: "easeInOut", delay: 0.6}}
+          transition={{ duration: 0.5, ease: "easeInOut", delay: 0.6 }}
           className="text-base sm:text-lg text-muted-foreground mb-10"
         >
           Welcome to my personal space on the web. I write about technology,
@@ -133,7 +130,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: "easeInOut", delay: 0.3}}
+          transition={{ duration: 0.5, ease: "easeInOut", delay: 0.3 }}
           className="text-xl sm:text-2xl font-semibold text-foreground mb-4"
         >
           Recent Posts
