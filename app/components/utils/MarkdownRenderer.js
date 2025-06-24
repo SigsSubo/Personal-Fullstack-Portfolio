@@ -1,12 +1,16 @@
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+// This component remains a Server Component by convention (async function in app dir)
+// It imports the MDX bundling logic from a .server.js file.
 
-export default function MarkdownRenderer({ content }) {
+import { bundleMdxContent } from '@/lib/mdxUtils.server';
+import MdxComponentDisplay from './MdxComponentDisplay';
+
+export default async function MarkdownRenderer({ content }) {
+  // The actual bundling now happens in a server-only context
+  const code = await bundleMdxContent(content);
+
   return (
     <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl prose-slate mx-auto indent-4">
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-        {content}
-      </ReactMarkdown>
+      <MdxComponentDisplay code={code} />
     </div>
   );
 }

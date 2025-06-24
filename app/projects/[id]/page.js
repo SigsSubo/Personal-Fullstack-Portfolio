@@ -17,7 +17,7 @@ export default function ProjectDetailPage() {
       <div className="flex flex-col items-center justify-center min-h-screen text-center px-6 py-8">
         <h1 className="text-2xl font-semibold mb-4 text-slate-900 dark:text-slate-100">Project not found</h1>
         <p className="text-slate-600 dark:text-slate-400 mb-8">
-          Sorry, we couldn't find the project you're looking for.
+          Sorry, we couldn&apos;t find the project you&apos;re looking for.
         </p>
         <Link 
           href="/projects" 

@@ -32,7 +32,7 @@ export default function ContactPage() {
         transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
         className="text-lg text-muted-foreground mb-12 text-center sm:text-xl relative z-10" 
       >
-        I'm always open to discussing new projects, creative ideas, or opportunities to be part of something amazing. Fill out the form below, or reach out via other channels!
+        I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of something amazing. Fill out the form below, or reach out via other channels!
       </motion.p>
 
       {/* Render Sparkles */}

@@ -34,7 +34,7 @@ export default function Home() {
             transition={{ duration: 0.5, ease: "easeInOut", delay: 1.5}}
             className='text-2xl sm:text-3xl md:text-4xl font-bold text-foreground'
           >
-            Hey, I'm Subarna
+            Hey, I&apos;m Subarna
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, x: -50 }}
